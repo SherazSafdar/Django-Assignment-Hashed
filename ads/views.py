@@ -41,3 +41,6 @@ class VisitCountDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = VisitCountSerializer
     authentication_classes = [BasicAuthentication]
     permission_classes = [IsAuthenticated]
+    
+    
+#    
