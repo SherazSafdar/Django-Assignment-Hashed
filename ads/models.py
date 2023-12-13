@@ -22,3 +22,5 @@ class VisitCount(models.Model):
     views_count = models.IntegerField()
     location = models.ForeignKey(Location, on_delete=models.CASCADE, related_name='visit_counts')
     
+    def __str__(self):
+        return f"{self.location.name} - {self.date}"
