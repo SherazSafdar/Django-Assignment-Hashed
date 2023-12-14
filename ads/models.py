@@ -15,7 +15,7 @@ class Location(models.Model):
     max_visitors = models.IntegerField()
     
     def __str__(self):
-        return f"{self.name} - {self.ad.name}"
+        return self.name
     
 class VisitCount(models.Model):
     date = models.DateField()
