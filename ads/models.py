@@ -19,7 +19,7 @@ class Location(models.Model):
     
 class VisitCount(models.Model):
     date = models.DateField()
-    views_count = models.IntegerField()
+    views_count = models.IntegerField(default=0)
     location = models.ForeignKey(Location, on_delete=models.CASCADE, related_name='visit_counts')
     
     def __str__(self):

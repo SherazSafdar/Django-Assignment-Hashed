@@ -5,6 +5,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import BasicAuthentication
 from .models import Location,Ad,VisitCount
 from .serializers import AdSerializer, LocationSerializer, VisitCountSerializer
+from datetime import date
 
 
 
@@ -26,7 +27,10 @@ class AllAdView(APIView):
     permission_classes = [IsAuthenticated]
     
     def get(self, request):
+        location = request.query_params.get('location')
         ads = Ad.objects.all()
+        if location:
+            ads = ads.filter(location__name__iexact=location)
         serializer = AdSerializer(ads, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)   
         
@@ -36,16 +40,31 @@ class AdDetailView(APIView):
 
     def get_object(self, pk):
         try:
-            return Ad.objects.get(pk=pk)
+            return Ad.objects.filter(end_date__gte=date.today()).filter(start_date__lt=date.today()).get(pk=pk)
         except Ad.DoesNotExist:
             return None
 
     def get(self, request, pk):
+        location = request.GET.get("location")
+        if not location:
+            return Response({'error': 'UnAuthorized'}, status=status.HTTP_401_UNAUTHORIZED)
         ad = self.get_object(pk)
-        if ad is not None:
+        if not ad:
+            return Response({'error': 'Ad not found.'}, status=status.HTTP_404_NOT_FOUND)
+        if ad.location.filter(name=location).count() == 0:
+            return Response({'error': 'UnAuthorized'}, status=status.HTTP_401_UNAUTHORIZED)
+        today_date = date.today()
+        visit_counter = VisitCount.objects.get_or_create(
+            date=today_date,
+            location=ad.location.get(name=location),
+        )
+        target_location = ad.location.get(name=location)
+        if target_location.max_visitors > visit_counter.views_count:
+            visit_counter.views_count += 1
+            visit_counter.save()
             serializer = AdSerializer(ad)
             return Response(serializer.data, status=status.HTTP_200_OK)
-        return Response({'error': 'Ad not found.'}, status=status.HTTP_404_NOT_FOUND)
+        return Response({'error': 'UnAuthorized'}, status=status.HTTP_401_UNAUTHORIZED)
 
     def put(self, request, pk):
         ad = self.get_object(pk)
