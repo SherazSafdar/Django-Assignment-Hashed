@@ -2,11 +2,13 @@ from django.urls import path
 from .views import (
     AdCreateView, AdDetailView,
     LocationCreateView, LocationDetailView,
+    AllAdView,
     #VisitCountListView, VisitCountDetailView
 )
 
 urlpatterns = [
     path('ad/', AdCreateView.as_view(), name='ad-list'),
+    path('ads/', AllAdView.as_view(),name='all-ads'),
     path('ad/<int:pk>/', AdDetailView.as_view(), name='ad-detail'),
     path('location/', LocationCreateView.as_view(), name='location-list'),
     path('location/<int:pk>/', LocationDetailView.as_view(), name='location-detail'),

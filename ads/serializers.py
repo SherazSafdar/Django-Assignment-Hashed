@@ -7,6 +7,7 @@ class LocationSerializer(serializers.ModelSerializer):
         fields = '__all__'
         
 class AdSerializer(serializers.ModelSerializer):
+    location = LocationSerializer(many=True, read_only=True)
     class Meta:
         model = Ad
         fields = '__all__'

@@ -20,6 +20,15 @@ class AdCreateView(APIView):
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         
+   
+class AllAdView(APIView):
+    authentication_classes = [BasicAuthentication]
+    permission_classes = [IsAuthenticated]
+    
+    def get(self, request):
+        ads = Ad.objects.all()
+        serializer = AdSerializer(ads, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)   
         
 class AdDetailView(APIView):
     authentication_classes = [BasicAuthentication]
@@ -31,7 +40,7 @@ class AdDetailView(APIView):
         except Ad.DoesNotExist:
             return None
 
-    def get(self, pk):
+    def get(self, request, pk):
         ad = self.get_object(pk)
         if ad is not None:
             serializer = AdSerializer(ad)
