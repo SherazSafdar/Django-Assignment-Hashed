@@ -36,7 +36,7 @@ Django Advertisement System is a web application that allows users to create and
 
 1. Clone the repository:
 
-git clone https://github.com/SherazSafdar/ToDo-App-Django
+git clone https://github.com/SherazSafdar/Django-Assignment-Hashed/tree/master
 
 
 2. Change to the project directory:
