@@ -1,0 +1,226 @@
+{
+	"info": {
+		"_postman_id": "f7085a95-290b-4ea5-a4a2-d0285dff8e7d",
+		"name": "Advertisment Assignment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get list of Ads",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "ad_system",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "ad_system",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/ads/?location=Sargodha",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"ads",
+						""
+					],
+					"query": [
+						{
+							"key": "location",
+							"value": "Sargodha"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get a Ad by id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "ad_system",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "ad_system",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/ad/4/?location=Sargodha",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"ad",
+						"4",
+						""
+					],
+					"query": [
+						{
+							"key": "location",
+							"value": "Sargodha"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a ad",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "ad_system",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "ad_system",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "ads testing",
+							"description": "testing ads",
+							"type": "default"
+						},
+						{
+							"key": "start_date",
+							"value": "2023-12-01",
+							"type": "default"
+						},
+						{
+							"key": "end_date",
+							"value": "2024-12-01",
+							"type": "default"
+						},
+						{
+							"key": "location",
+							"value": "1",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/ad/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"ad",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a Location",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "ad_system",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "ad_system",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "Sargodha",
+							"type": "default"
+						},
+						{
+							"key": "max_visitors",
+							"value": "100",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/location/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"location",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
