@@ -2,16 +2,6 @@
 
 Django Advertisement System is a web application that allows users to create and manage advertisements with location-based restrictions. Similar to popular ad systems like Facebook and Instagram.
 
-## Table of Contents
-
-- [Features](#features)
-- [Requirements](#requirements)
-- [Installation](#installation)
-- [API Endpoints](#api-endpoints)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
-
 ## Features
 
 - Admin can create ads with start and end dates.
@@ -50,13 +40,6 @@ source venv/bin/activate # On macOS and Linux
 
 4. Install project dependencies from the requirements.txt file:
 pip install -r requirements.txt
-
-
-## Configuration
-
-1. Create a `.env` file in the project directory and configure environment variables such as database credentials:
-
-
 
 ## Contact
 
