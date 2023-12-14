@@ -15,10 +15,12 @@ class Location(models.Model):
     max_visitors = models.IntegerField()
     
     def __str__(self):
-        return f"{self.name} - {self.ad.name}"
+        return self.name
     
 class VisitCount(models.Model):
     date = models.DateField()
     views_count = models.IntegerField()
     location = models.ForeignKey(Location, on_delete=models.CASCADE, related_name='visit_counts')
     
+    def __str__(self):
+        return f"{self.location.name} - {self.date}"

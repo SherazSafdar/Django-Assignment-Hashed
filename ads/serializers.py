@@ -1,14 +1,17 @@
 from rest_framework import serializers
-from .models import Location,Ad
+from .models import Location,Ad,VisitCount
 
 class LocationSerializer(serializers.ModelSerializer):
-    class Mete:
+    class Meta:
         model = Location
-        fields = ['name', 'max_visitors', 'current_visitor']
+        fields = '__all__'
         
 class AdSerializer(serializers.ModelSerializer):
-    locations = LocationSerializer(many=True, read_only=True)
-    
     class Meta:
         model = Ad
-        fields = ['name', 'start_date', 'end_date', 'locations']
+        fields = '__all__'
+        
+class VisitCountSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = VisitCount
+        fields = '__all__'
